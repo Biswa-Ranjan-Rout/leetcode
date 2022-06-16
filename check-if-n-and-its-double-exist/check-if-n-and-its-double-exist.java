@@ -6,15 +6,10 @@ class Solution {
           
         for(int i=0; i<arr.length; i++){
           int a = arr[i], b = 2 * a;
-          if(set.contains(b) ){
+          if(set.contains(b) || (a % 2 == 0 && set.contains(a/2))){
             return true;
           }
-          else if( a % 2 == 0 && set.contains(a/2)){
-            return true;
-          }
-          else{
-            set.add(a);
-          }
+          set.add(a);
         }
       return false;
     }
