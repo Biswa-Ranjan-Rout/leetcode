@@ -1,19 +1,19 @@
 class Solution {
     public boolean checkIfExist(int[] arr) {
-        int n = arr.length;
-        Map<Integer,Integer> map = new HashMap<>();
+
+       Set<Integer> set = new HashSet<>();
 
           
-        for(int i=0; i<n; i++){
+        for(int i=0; i<arr.length; i++){
           int a = arr[i], b = 2 * a;
-          if(map.containsKey(b) ){
+          if(set.contains(b) ){
             return true;
           }
-          else if( a % 2 == 0 && map.containsKey(a/2)){
+          else if( a % 2 == 0 && set.contains(a/2)){
             return true;
           }
           else{
-            map.put(a,1);
+            set.add(a);
           }
         }
       return false;
