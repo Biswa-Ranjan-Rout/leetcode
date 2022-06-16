@@ -1,28 +1,23 @@
 class Solution {
-
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int[] mergedArr = new int[m + n];
-
-        int idx1 = 0;
-        int idx2 = 0;
-        int i = 0;
-
-        while (idx1 < m && idx2 < n) {
-            if (nums1[idx1] <= nums2[idx2]) {
-                mergedArr[i++] = nums1[idx1++];
-            } else if (nums1[idx1] > nums2[idx2]) {
-                mergedArr[i++] = nums2[idx2++];
+        // Set idx1 and idx2 to point to the end of their respective arrays.
+        int idx1 = m - 1;
+        int idx2 = n - 1;
+        
+        // And move p backwards through the array, each time writing
+        // the smallest value pointed at by idx1 or idx2.
+        for (int p = m + n - 1; p >= 0; p--) {
+          /* This if block is required because when idx2 will become -1 
+              if we'll not break then, nums2[-1] will throw ArrayIndexOutOfBoundException          
+          */
+            if (idx2 < 0) {
+                break;
             }
-        }
-        while(idx1 < m){
-          mergedArr[i++] = nums1[idx1++];
-        }
-        while(idx2 < n){
-          mergedArr[i++] = nums2[idx2++];
-        }
-
-        for (int j = 0; j < mergedArr.length; j++) {
-            nums1[j] = mergedArr[j];
+            if (idx1 >= 0 && nums1[idx1] > nums2[idx2]) {
+                nums1[p] = nums1[idx1--];
+            } else {
+                nums1[p] = nums2[idx2--];
+            }
         }
     }
 }
