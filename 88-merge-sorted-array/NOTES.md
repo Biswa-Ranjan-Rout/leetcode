@@ -1,5 +1,6 @@
 Solution With Extra Space:
 -------------------
+```
 class Solution {
 ​
 public void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -28,9 +29,10 @@ nums1[j] = mergedArr[j];
 }
 }
 }
+```
 --------------------------------
 Approach 3: Three Pointers (Start From the End)
---------------------------------
+# --------------------------------
 Intuition:
 ​
 Interview Tip:
