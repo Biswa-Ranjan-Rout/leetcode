@@ -24,7 +24,6 @@ class Solution {
         return nums;
     }
 }
-
 /*
 - We'll keep even at left and odd numbers at right side.
 - So we need 2 pointers. 1 for left and 1 for right.
