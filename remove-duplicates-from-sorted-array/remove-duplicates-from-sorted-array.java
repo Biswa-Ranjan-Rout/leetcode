@@ -1,6 +1,11 @@
 class Solution {
 
     public int removeDuplicates(int[] nums) {
+      
+        if(nums == null){
+          return 0;
+        }
+      
         int writePointer = 0;
         for (int j = 1; j < nums.length; j++) { // j is used as a readPointer
             if (nums[j-1] != nums[j]) { // This means duplicate run has ended
