@@ -12,6 +12,8 @@ class Solution {
             count = 0;
           }
         }
+      /* We have added return like this because if last index is 1 then control
+         will not enter the else block to set the max count value. */
       return Math.max(max, count);
     }
 }
