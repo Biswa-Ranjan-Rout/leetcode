@@ -1,17 +1,24 @@
 class Solution {
-
     public int heightChecker(int[] heights) {
-        int n = heights.length;
-        int count = 0;
+        int[] freq = new int[101];
         
-        // clone() method copies the array to another array.
-        int[] copyArr = heights.clone();
-        Arrays.sort(copyArr);
-
-        for (int i = 0; i < n; i++) {
-            if (copyArr[i] != heights[i]) count++;
+        for (int height : heights) {
+            freq[height]++;
         }
-        return count;
+        
+        int result = 0;
+        int curHeight = 0;
+        
+        for (int i = 0; i < heights.length; i++) {
+            while (freq[curHeight] == 0) {
+                curHeight++;
+            }
+            if (curHeight != heights[i]) {
+                result++;
+            }
+            freq[curHeight]--;
+        }
+        return result;
     }
 }
 
