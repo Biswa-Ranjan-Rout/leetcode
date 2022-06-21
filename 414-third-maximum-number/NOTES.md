@@ -1,47 +1,42 @@
-This will also handle duplicates elegantly—if for example we had the input set [12, 12, 4, 2, 12, 1], then the first value we'd put into the seen maximums Set would be 12. Then when we find the second maximum, the algorithm knows to ignore all the 12s.
+Solution 1:
 ​
 ```
 ​
 class Solution {
 ​
 public int thirdMax(int[] nums) {
-​
-Set<Integer> seenMaximums = new HashSet<>();
-for (int i = 0; i < 3; i++) {
-Integer curMaximum = maxIgnoringSeenMaximums(nums, seenMaximums);
-if (curMaximum == null) {
-return Collections.max(seenMaximums);
-}
-seenMaximums.add(curMaximum);
-}
-​
-return Collections.min(seenMaximums);
-}
-​
-​
-private Integer maxIgnoringSeenMaximums(int[] nums, Set<Integer> seenMaximums) {
-Integer maximum = null;
+Set<Integer> set = new HashSet<>();
 for (int num : nums) {
-if (seenMaximums.contains(num)) {
-continue;
+set.add(num);
 }
-if (maximum == null || num > maximum) {
-maximum = num;
+int max = Collections.max(set);
+if (set.size() < 3) { //If there are less than 3 numbers then return the maximum
+return max;
+} else {
+set.remove(max);// removed the 1st max value
+max = Collections.max(set);
+set.remove(max); // removed the 2nd max value
+​
+max = Collections.max(set);
 }
-}
-return maximum;
+return max;
 }
 }
 ​
 ```
+Complexity Analysis
+​
 Time Complexity : O(n).
-For each of the three times we find the next maximum, we need to perform an O(n) scan. Because there are only, at most, three scans the total time complexity is just O(n).
 ​
-The Set operations are all O(1) because there are only at most 3 items in the Set.
+Putting the input Array values into a HashSet has a cost of O(n), as each value costs O(1) to place, and there are nn of them.
 ​
-Space Complexity : O(1).
+Finding the maximum in a HashSet has a cost of O(n), as all the values need to be looped through. We do this 3 times, giving O(3⋅n)=O(n) as we drop constants in big-oh notation.
 ​
-Because seenMaximums can contain at most 3 items, the space complexity is only O(1).
+Deleting a value from a HashSet has a cost of O(1), so we can ignore this.
 ​
-Approach 3: Keep Track of 3 Maximums Using a Set
-Intuition
+In total, we're left with O(n) + O(n) = O(n).
+​
+Space Complexity : O(n).
+​
+In the worst case, the HashSet is the same size as the input Array, and so requires O(n) space to store.
+​
