@@ -4,20 +4,14 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         for (int num : nums) {
             set.add(num);
+            if (set.size() > 3) {
+                set.remove(Collections.min(set));
+            }
         }
-      
-        int max = Collections.max(set);
-      
-        if (set.size() < 3) { //If there are less than 3 numbers then return the maximum
-            return max;
-        } else {
-            set.remove(max);// removed the 1st max value
-            max = Collections.max(set); 
-            set.remove(max); // removed the 2nd max value
 
-            max = Collections.max(set);
+        if (set.size() == 3) {
+            return Collections.min(set);
         }
-        return max;
+        return Collections.max(set);
     }
 }
-
