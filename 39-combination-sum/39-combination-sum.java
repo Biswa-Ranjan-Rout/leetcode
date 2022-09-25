@@ -7,6 +7,7 @@ class Solution {
     }
 
     private void findCombination(int i, int[] arr, int target, List<List<Integer>> res, List<Integer> ds) {
+        // If Target becomes 0, means we found the combination, no need to proceed further
         if (target == 0) {
             res.add(new ArrayList<>(ds));
             return;
