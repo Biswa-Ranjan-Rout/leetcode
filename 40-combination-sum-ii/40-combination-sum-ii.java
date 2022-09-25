@@ -13,7 +13,7 @@ class Solution {
             return;
         }
         for (int i = idx; i < arr.length; i++) {
-            if (i > idx && arr[i] == arr[i - 1]) continue;
+            if (i > idx && arr[i] == arr[i - 1]) continue; // If we will not check (i > idx), then arr[i - 1] will give error for 1st index i.e. arr[-1] is not valid
             if (arr[i] > target) break;
 
             ds.add(arr[i]);
