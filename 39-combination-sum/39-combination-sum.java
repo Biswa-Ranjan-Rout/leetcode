@@ -7,17 +7,17 @@ class Solution {
     }
 
     private void findCombination(int i, int[] arr, int target, List<List<Integer>> res, List<Integer> ds) {
-        if (arr.length== i) {
-            if (target == 0) {
-                res.add(new ArrayList(ds));
-            }
+        if (target == 0) {
+            res.add(new ArrayList<>(ds));
             return;
         }
-        if (arr[i] <= target) {
-            ds.add(arr[i]);
-            findCombination(i, arr, target - arr[i], res, ds);
-            ds.remove((ds.size()) - 1);
+        if (i < arr.length) {
+            if (arr[i] <= target) {
+                ds.add(arr[i]);
+                findCombination(i, arr, target - arr[i], res, ds);
+                ds.remove(ds.size() - 1);
+            }
+            findCombination(i + 1, arr, target, res, ds);
         }
-        findCombination(i + 1, arr, target, res, ds);
     }
 }
