@@ -7,14 +7,13 @@ class Solution {
         return result;
     }
     public void findSub(int i, int[] arr, List<Integer> list, int n, List<List<Integer>> result){
-        if(i == n){
-           result.add(new ArrayList(list));
+       if(i == n){
+           result.add(new ArrayList<>(list));
            return;
-        }       
+       }
         list.add(arr[i]);
-        findSub(i+1, arr,list,n, result);
+        findSub(i+1, arr, list, n, result);
         list.remove(list.size() - 1);
-        
-        findSub(i+1, arr,list,n, result);
+        findSub(i+1, arr, list, n, result);
     }
 }
